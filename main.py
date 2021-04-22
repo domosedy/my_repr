@@ -23,6 +23,7 @@ engine = create_engine(f'sqlite:///{file.strip()}', echo=True)
 Session = sessionmaker(bind=engine)
 
 
+@app.route('/')
 @app.route('/index')
 def mai():
     global Session
