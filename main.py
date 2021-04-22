@@ -18,12 +18,12 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'chupakabra'
 
+file = "db/blogs.sqlite"
 engine = create_engine(f'sqlite:///{file.strip()}', echo=True)
 Session = sessionmaker(bind=engine)
 
 
 def main():
-    file = "db/blogs.sqlite"
     Base.metadata.create_all(engine)
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
