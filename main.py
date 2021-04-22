@@ -287,7 +287,7 @@ def sign_up():
 def main():
     Base.metadata.create_all(engine)
     port = int(os.environ.get("PORT", 5000))
-    app.run(port=port)
+    app.run(host='0.0.0.0', port=port)
     return redirect(url_for('index'))
 
 
