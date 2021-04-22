@@ -184,7 +184,7 @@ def change_article(id):
             post.name = form.title.data
             post.text = form.content.data
             db_sess.commit()
-            return '<script>document.location.href = document.referrer</script>'
+            return redirect(url_for('profile'))
     return render_template('change.html', form=form)
 
 
