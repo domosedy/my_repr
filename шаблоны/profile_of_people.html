@@ -23,7 +23,7 @@
         {% if df > 0%}
         {% for item in news %}
             <h4><a href= "profile/{{ item.user_id}}">{{item.user.nickname}}</a></h4>
-        <h3> {{item.title}} </h3>
+        <h3> {{item.name}} </h3>
         <small> {{item.date}} </small>
             <div>
                 {{item.text}}
