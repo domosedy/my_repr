@@ -167,9 +167,8 @@ def change_article(id):
     db_sess = Session()
     form = NewsForm()
     if request.method == "GET":
-        db_sess = db_session.create_session()
-        news = db_sess.query(Posts).filter(and_(Posts.id == id,
-                                                Posts.user == current_user)).first()
+        news = db_sess.query(Post).filter(and_(Post.id == id,
+                                                Post.user == current_user)).first()
         if news:
             form.title.data = news.name
             form.content.data = news.text
@@ -184,7 +183,7 @@ def change_article(id):
         else:
             post.name = form.title.data
             post.text = form.content.data
-            db_ses.commit()
+            db_sess.commit()
             return '<script>document.location.href = document.referrer</script>'
     return render_template('change.html', form=form)
 
