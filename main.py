@@ -23,13 +23,7 @@ engine = create_engine(f'sqlite:///{file.strip()}', echo=True)
 Session = sessionmaker(bind=engine)
 
 
-def main():
-    Base.metadata.create_all(engine)
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
-
-
-@app.route('/')
+@app.route('/index')
 def mai():
     global Session
     db_sess = Session()
@@ -64,7 +58,6 @@ def mai():
     l1 = len(lp)
     lp = lp[::-1]
     lp1 = lp1[::-1]
-    print(lp)
     return render_template('index.html', news=news, post=posts, lp=lp, lp1=lp1, l1=l1, l2=l2)
 
 
@@ -227,7 +220,7 @@ def load_user(user_id):
 @login_required
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect("/index")
 
 
 @app.route('/change_information', methods=["GET", "POST"])
@@ -288,6 +281,13 @@ def sign_up():
         db_sess.commit()
         return redirect('/login')
     return render_template('sign.html', form=form)
+
+
+def main():
+    Base.metadata.create_all(engine)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    return redirect(url_for('index'))
 
 
 #db_sess = Session()
