@@ -62,6 +62,11 @@ def mai():
     return render_template('index.html', news=news, post=posts, lp=lp, lp1=lp1, l1=l1, l2=l2)
 
 
+'''@app.route('/favicon.ico')
+def ico():
+    return send_from_directory(os.path.join(app.root_path, 'static', 'img'), 'img.ico', mimetype='image/png')'''
+
+
 @app.route('/home')
 @app.route('/profile')
 def profile():
@@ -287,7 +292,7 @@ def sign_up():
 def main():
     Base.metadata.create_all(engine)
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(port=port)
     return redirect(url_for('index'))
 
 
