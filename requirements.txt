@@ -19,8 +19,6 @@ mccabe==0.6.1
 pipenv==2020.11.15
 pylint==2.7.4
 python-dotenv==0.17.0
-qt5-applications==5.15.2.2.1
-qt5-tools==5.15.2.1.0.1
 six==1.15.0
 SQLAlchemy==1.4.11
 toml==0.10.2
