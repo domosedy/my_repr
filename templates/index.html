@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    {% if current_user.is_authenticated%}
+    {%if l2 > 0%}
+    {% for item in post%}
+        <h4><a href= "profile/{{ item.user_id}}">{{item.user.nickname}}</a></h4>
+        <h3> {{item.title}} </h3>
+        <small> {{item.date}} </small>
+            <div>
+                {{item.text}}
+            </div> 
+            <p> {{item.likes}} лайков</p>
+            <button><a href="/like/{{ item.id }} "> {{lp1.pop()}} </a></button>
+            <br>
+            <br>
+    {% endfor %}
+    {%endif%}
+    <hr />
+    <h3> Вам может понравиться </h3>
+        {% if l1 > 0%}
+            {% for item in news%}
+                <h4><a href= "profile/{{ item.user_id}}">{{item.user.nickname}}</a></h4>
+                <h3> {{item.title}} </h3>
+                <small> {{item.date}} </small>
+                    <div>
+                        {{item.text}}
+                    </div> 
+                    <p> {{item.likes}} лайков</p>
+                    <button><a href="/like/{{ item.id }} "> {{lp.pop()}} </a></button>
+                    <br>
+                    <br>
+            {% endfor %}
+        {% endif %}
+
+    {% else %}
+
+        <h3> Вам может понравиться:</h3>
+        {% if l2 > 0%}
+        {% for item in news%}
+            <h4><a href= "profile/{{ item.user_id}}">{{item.user.nickname}}</a></h4>
+            <h3> {{item.title}} </h3>
+            <small> {{item.date}} </small>
+                <div>
+                    {{item.text}}
+                </div> 
+                <p> {{item.likes}} лайков</p>
+                <button><a href="/like/{{ item.id }} "> лайкнуть </a></button>
+                <br>
+                <br>
+    {% endfor %}
+    {% endif%}
+
+    {% endif %}
+{% endblock %}

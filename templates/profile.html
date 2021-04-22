@@ -1,0 +1,55 @@
+{%extends "base.html" %}
+{%block content%}
+    <img src={{current_user.avatar(125)}} class="police">
+    <br>
+    <br>
+    <div align="left">
+        <p> {{current_user.nickname}}</p>
+        <p> {{current_user.about}} </p>
+        <p> {{current_user.follows}} подписчиков </p>
+        <button class = "button"><a href="/change_information"> сменить информацию </a></button> <br> <br>
+        <button class = "button"><a  href="/make_article"> добавить записи </a></button>
+    </div>
+    <div class="wrapper">
+        <div class="content">
+            <div class="tabs">
+              <nav class="tabs__items">
+                <a href="#tab_01" class="tabs__item"><span>Мои записи</span></a>
+                <a href="#tab_02" class="tabs__item"><span>Понравившееся</span></a>
+              </nav>
+              <div class="tabs__body">
+                <div id="tab_01" class="tabs__block">
+                    {% for item in news%}
+                        <h4><a href= "profile/{{ item.user_id}}">{{item.user.nickname}}</a></h4>
+                        <h3> {{item.title}} </h3>
+                        <small> {{item.date}} </small>
+                            <div>
+                                {{item.text}}
+                            </div> 
+                            <p> {{item.likes}} лайков</p>
+                        <button><a href="/change_article/{{ item.id }} "> изменить запись </a></button>
+                        <button><a href="/delete_news/{{item.id}}"> удалить </a></button>
+                        <br>
+                        <br>
+                        <button><a href="/like/{{ item.id }} "> {{lp.pop()}} </a></button>
+                        <br>
+                        <br>
+                    {% endfor%}
+                </div>
+                <div id="tab_02" class="tabs__block">
+                  {% for item in liked%}
+                        <h4><a href= "profile/{{ item.user_id}}">{{item.user.nickname}}</a></h4>
+                        <h3> {{item.title}} </h3>
+                        <small> {{item.date}} </small>
+                            <div>
+                                {{item.text}}
+                            </div> 
+                            <p> {{item.likes}} лайков</p>
+                        <button><a href="/like/{{ item.id }} "> убрать лайк </a></button>
+                        <br>
+                    {% endfor%}
+                </div>
+              </div>
+            </div>
+    </div>
+{% endblock %}

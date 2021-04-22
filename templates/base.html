@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+      *,
+      *:before,
+      *after {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        box-sizing: border-box;
+      }
+
+      small{
+        color: #b8b4b8;
+      }
+      .wrapper{
+        min-height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .content{
+        max-width: 100%;
+        margin: 0px auto;
+        padding: 50px 0;
+      }
+      .tabs{
+        margin: 0px 0px 50px 0px;
+      }
+      .tabs__items{
+        display: flex;
+      }
+      .tabs__item{
+        flex: 0 1 50%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 150%;
+        color: black;
+        text-decoration: none;
+
+      }
+      .tabs__body{
+        min-width: 100%;
+      }
+      .tabs__block{
+        position: relative;
+        padding:20px;
+        display: none;
+
+      }
+      .tabs__block:target{
+        display: block;
+      }
+
+      .tabs__block:nth-child(1){
+      }
+      .tabs__block:nth-child(1):before{
+        background-color: #d4cbbe;
+        border: 1px solid black;
+        left: 0;
+        bottom: -10 px;
+      }
+      .tabs__block:nth-child(2){
+      }
+      .tabs__block:nth-child(2):before{
+        background-color: #d4cbbe;
+        border: 1px solid black;
+        right: 0;
+      }
+      .tabs__block:before{
+        content:"";
+        height:50px;
+        width: 50%;
+        position: absolute;
+        top: -50px;
+      }
+      .police{
+        border-radius: 100px; /* Радиус скругления */
+        border: 3px solid green;
+      }
+      .pol{
+        margin: 0;
+        padding: 4px;
+      }
+      .lol{
+        color: #1a181a !important;
+        text-decoration: none;
+      }
+      .pol li{
+        display:inline;
+        padding: 20%;
+      }
+      .tabs__item span{
+        position: relative;
+        z-index: 2;
+      }
+      .lol2{
+        align: right;
+        margin-left: 20%;
+        margin-right:0;
+      }
+      table{
+        min-width:100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <table>
+        <tr>
+          <td width="10%">
+            <a href = '/'><img src= "{{url_for('static', filename='img/twinter.png')}}" href="/" /></a>
+          </td>
+          <td>
+            <a href='/' class = lol><h2>TWINTER</h2></a>
+          </td>
+          <td width="20%">
+            <a href='/profile' class = lol align = center><h3> Мой профиль </h3></a>
+          </td>
+          <td class = lol2>
+            {% if current_user.is_authenticated %}
+            <div align="right">
+              <a align="right" href="/logout" title="logout"><h4>{{current_user.nickname}}</h4></a>
+            </div>
+            {%else%}
+            <p align="right">
+                <a class="btn btn-primary " href="/sign_up">Sign up</a>
+                <a class="btn btn-success" href="/login">Login</a>
+            </p>
+            {%endif%}
+          </td>
+        </tr>
+      </table>
+      <br>
+    
+        {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
