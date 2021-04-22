@@ -11,20 +11,26 @@ from sqlalchemy import *
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'chupakabra'
 
-file = "db/blogs.sqlite"
 engine = create_engine(f'sqlite:///{file.strip()}', echo=True)
-Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
 
-@app.route('/')
 def main():
+    file = "db/blogs.sqlite"
+    Base.metadata.create_all(engine)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
+
+@app.route('/')
+def mai():
     global Session
     db_sess = Session()
     news = db_sess.query(Post).order_by(-Post.likes)
@@ -286,5 +292,4 @@ def sign_up():
 
 #db_sess = Session()
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    main()
