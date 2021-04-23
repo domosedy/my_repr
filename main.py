@@ -97,14 +97,13 @@ def profil(id):
     df = 0
     for i in user.news:
         df += 1
-    my_news = user.news
     my_news = [i for i in my_news]
     my_news.sort()
     lp = ['лайкнуть' for i in range(df)]
     if not current_user.is_authenticated:
         return render_template('profile_of_people.html', user=user, news=user.news, df=df, xl=xl, lp=lp)
     k = 0
-    for i in user.news:
+    for i in my_news:
         if i in current_user.liked:
             lp[k] = 'убрать лайк'
         k += 1
