@@ -150,9 +150,10 @@ def artcile():
         day = date.day
         time = datetime.now().time()
         mi = time.minute
-        hour = time.hour + 3
+        hour = time.hour
+        de = datetime.delta(hours=3)
         sec = int(time.second)
-        post.date = datetime(year, mon, day, hour, mi, sec)
+        post.date = datetime(year, mon, day, hour, mi, sec) + de
         xd = db_sess.query(User).filter(User.id == current_user.id).first()
         xd.news.append(post)
         if post in xd.liked:
