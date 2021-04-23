@@ -96,7 +96,8 @@ def profil(id):
     df = 0
     for i in user.news:
         df += 1
-
+    my_news = user.news
+    my_news.reverse()
     lp = ['лайкнуть' for i in range(df)]
     if not current_user.is_authenticated:
         return render_template('profile_of_people.html', user=user, news=user.news, df=df, xl=xl, lp=lp)
@@ -105,6 +106,7 @@ def profil(id):
         if i in current_user.liked:
             lp[k] = 'убрать лайк'
         k += 1
+    lp.reverse()
     return render_template('profile_of_people.html', user=user, news=user.news, df=df, xl=xl, lp=lp)
 
 
