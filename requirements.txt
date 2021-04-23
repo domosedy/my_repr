@@ -5,6 +5,7 @@ colorama==0.4.4
 distlib==0.3.1
 filelock==3.0.12
 Flask==1.1.2
+psycopg2
 Flask-Login==0.5.0
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==0.14.3
