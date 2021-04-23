@@ -73,8 +73,8 @@ def profile():
         return redirect(url_for('login'))
 
     liked = current_user.liked
-    my_news = current_user.news
-    my_news.reverse()
+    my_news = [i for i in current_user.news]
+    my_news.sort()
     lp = []
     for i in my_news:
         if i in liked:
