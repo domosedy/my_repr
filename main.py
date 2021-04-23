@@ -10,7 +10,7 @@ from data.users import User
 from data.posts import Post
 from sqlalchemy import *
 from sqlalchemy.orm import sessionmaker
-from datetime import datetime
+from datetime import *
 from flask_sqlalchemy import SQLAlchemy
 import os
 import psycopg2
@@ -151,7 +151,7 @@ def artcile():
         time = datetime.now().time()
         mi = time.minute
         hour = time.hour
-        de = datetime.delta(hours=3)
+        de = timedelta(hours=3)
         sec = int(time.second)
         post.date = datetime(year, mon, day, hour, mi, sec) + de
         xd = db_sess.query(User).filter(User.id == current_user.id).first()
