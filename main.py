@@ -81,6 +81,7 @@ def profile():
             lp.append('убрать лайк')
         else:
             lp.append('лайкнуть')
+    lp.reverse()
     return render_template('profile.html', news=my_news, liked=liked, lp=lp)
 
 
