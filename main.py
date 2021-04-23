@@ -97,7 +97,7 @@ def profil(id):
     df = 0
     for i in user.news:
         df += 1
-    my_news = [i for i in my_news]
+    my_news = [i for i in user.news]
     my_news.sort()
     lp = ['лайкнуть' for i in range(df)]
     if not current_user.is_authenticated:
