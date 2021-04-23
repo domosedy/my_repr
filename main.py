@@ -12,6 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 import os
+import psycopg2
 
 app = Flask(__name__)
 login_manager = LoginManager()
