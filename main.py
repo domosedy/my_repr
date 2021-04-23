@@ -75,7 +75,6 @@ def profile():
     liked = current_user.liked
     my_news = current_user.news
     my_news.reverse()
-    liked.reverse()
     lp = []
     for i in my_news:
         if i in liked:
