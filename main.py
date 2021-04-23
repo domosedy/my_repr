@@ -1,5 +1,6 @@
 from flask import *
 from fl_wtf import *
+import click
 import os
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 #from data import db_session
@@ -13,6 +14,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 import os
 import psycopg2
+from flask.cli import with_appcontext
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -283,7 +285,11 @@ def sign_up():
         db_sess.commit()
         return redirect('/login')
     return render_template('sign.html', form=form)
-
+@click.command(name='create_tables')
+@with_appcontext
+def create_table():
+    engine = create_engine('postgresql+psycopg2://rbiwjzebllbprs:c35f1810d2543b67c4b32bcfc7102e770005e7773e464966e05a8842393a0df0@ec2-35-174-35-242.compute-1.amazonaws.com:5432/d26saij9mqtfqn', echo=True)
+    Base.metadata.create_all(engine)
 
 def main():
     Base.metadata.create_all(engine)
