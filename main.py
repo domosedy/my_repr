@@ -75,6 +75,7 @@ def profile():
     liked = current_user.liked
     my_news = current_user.news
     my_news.reverse()
+    liked.reverse()
     lp = []
     for i in my_news:
         if i in liked:
@@ -95,6 +96,7 @@ def profil(id):
     df = 0
     for i in user.news:
         df += 1
+
     lp = ['лайкнуть' for i in range(df)]
     if not current_user.is_authenticated:
         return render_template('profile_of_people.html', user=user, news=user.news, df=df, xl=xl, lp=lp)
