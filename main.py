@@ -98,7 +98,8 @@ def profil(id):
     for i in user.news:
         df += 1
     my_news = user.news
-    my_news.reverse()
+    my_news = [i for i in my_news]
+    my_news.sort()
     lp = ['лайкнуть' for i in range(df)]
     if not current_user.is_authenticated:
         return render_template('profile_of_people.html', user=user, news=user.news, df=df, xl=xl, lp=lp)
