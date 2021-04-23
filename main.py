@@ -75,6 +75,7 @@ def profile():
     liked = current_user.liked
     my_news = [i for i in current_user.news]
     my_news.sort()
+    liked = liked[::-1]
     lp = []
     for i in my_news:
         if i in liked:
