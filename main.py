@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = 'chupakabra'
 
 file = "db/blogs.sqlite"
 engine = create_engine(f'sqlite:///{file.strip()}', echo=True)
-#engine = create_engine(f'postgresql:///{file.strip()}', echo=True)
+engine = create_engine('postgres://rbiwjzebllbprs:c35f1810d2543b67c4b32bcfc7102e770005e7773e464966e05a8842393a0df0@ec2-35-174-35-242.compute-1.amazonaws.com:5432/d26saij9mqtfqn', echo=True)
 Session = sessionmaker(bind=engine)
 
 
