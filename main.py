@@ -150,7 +150,7 @@ def artcile():
         day = date.day
         time = datetime.now().time()
         mi = time.minute
-        hour = time.hour
+        hour = time.hour + 3
         sec = int(time.second)
         post.date = datetime(year, mon, day, hour, mi, sec)
         xd = db_sess.query(User).filter(User.id == current_user.id).first()
