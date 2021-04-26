@@ -245,10 +245,11 @@ def change():
     if form.validate_on_submit():
         us = db_sess.query(User).filter(
             User.nickname == form.title.data).first()
-        if us:
-            return render_template('change.html', form=form, message='1222')
-        current_user.nickname = form.title.data
-        current_user.about = form.content.data
+        if us and us.id != current_user.id:
+            return render_template('change.html', form=form, message='пользователь с таким ником уже есть')
+        xd = db_sess.query(User).filter(User.id == current_user.id).first()
+        xd.nickname = form.title.data
+        xd.about = form.content.data
         db_sess.commit()
         return redirect(url_for('profile'))
     return render_template('change.html', form=form)
