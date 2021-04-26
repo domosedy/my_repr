@@ -250,7 +250,7 @@ def change():
         current_user.nickname = form.title.data
         current_user.about = form.content.data
         db_sess.commit()
-        return '<script>document.location.href = document.referrer</script>'
+        return redirect(url_for('profile'))
     return render_template('change.html', form=form)
 
 
